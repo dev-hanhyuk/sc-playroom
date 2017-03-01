@@ -23,7 +23,7 @@ import Play from 'material-ui/svg-icons/av/play-arrow'
 import Pause from 'material-ui/svg-icons/av/pause'
 import Previous from 'material-ui/svg-icons/av/fast-rewind'
 import Next from 'material-ui/svg-icons/av/fast-forward'
-
+import Login from 'material-ui/svg-icons/action/power-settings-new'
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +31,12 @@ class App extends Component {
     this.state = { drawer: false }
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   this.props.authenticate();
+  //   this.props.updateHistory(this.props.auth.user.id);
+  // }
+
+  openAuth = () => {
     this.props.authenticate();
     this.props.updateHistory(this.props.auth.user.id);
   }
@@ -87,6 +92,7 @@ class App extends Component {
           <MenuItem style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)'}} onTouchTap={() => this.handleClose('/main')}><SearchIcon style={{verticalAlign: 'middle'}}/>  SEARCH</MenuItem>
           <MenuItem style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)'}} onTouchTap={() => this.handleClose('/favorite')}><FavoriteIcon color="#D32F2F" style={{verticalAlign: 'middle'}} />  MY FAVORITES</MenuItem>
           <MenuItem style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)'}} onTouchTap={() => this.handleClose('/create')}><AddIcon color="#00BCD4" style={{verticalAlign: 'middle'}} />  CREATE PLAYROOM</MenuItem>
+          <MenuItem style={{textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)'}} onTouchTap={() => this.handleClose('/login')}><Login color="rgb(255, 65, 0)" style={{verticalAlign: 'middle'}}/>  LOGIN</MenuItem>
 
           <Divider />
           <Subheader>RECENT PLAYROOMS</Subheader>

@@ -4,6 +4,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import store from './store';
 
 import App from '_components/App'
+import Login from '_components/Login'
 import Main from '_components/Main'
 import Favorite from '_components/Favorite'
 import Create from '_components/Create'
@@ -16,6 +17,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 export default () => (
   <Router history={history}>
     <Route path="/" component={App}>
+      <IndexRedirect to="/login" />
+      <Route path="/login" component={Login} />
       <Route path="/main" component={Main} />
       <Route path="/favorite" component={Favorite} />
       <Route path="/create" component={Create} />
