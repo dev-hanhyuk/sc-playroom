@@ -13,8 +13,8 @@ class Login extends React.Component {
 
     openAuth = () => {
       this.props.authenticate();
-      this.props.updateHistory(this.props.auth.user.id);
-      browserHistory.push('/main')
+      // this.props.updateHistory(this.props.auth.user.id);
+      // browserHistory.push('/main')
     }
 
     render () {
