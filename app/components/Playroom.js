@@ -57,7 +57,7 @@ const styles = {
   fab2: {
     marginRight: 20,
     position: 'fixed',
-    bottom: '15vh',
+    bottom: '10vh',
     right: '5vh'
   }
 }

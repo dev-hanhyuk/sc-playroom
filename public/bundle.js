@@ -23811,23 +23811,7 @@
 	"use strict";
 	
 	/* DEV */
-	// const CLIENT_ID = 'WSa98CZfA32N1ew7v50WFDBEHT6DNEND';
-	
-	// const FIRE_BASE = {
-	//   apiKey: "AIzaSyDZGBlaWtfjB1o8SzsD-Aj0d_IVAg8Mc5Q",
-	//   authDomain: "sharing-playlist-application.firebaseapp.com",
-	//   databaseURL: "https://sharing-playlist-application.firebaseio.com",
-	//   storageBucket: "sharing-playlist-application.appspot.com",
-	//   messagingSenderId: "751368319884"
-	// }
-	
-	// const REDIRECT_URI = 'http://localhost:1337/callback';
-	
-	// module.exports = { CLIENT_ID, FIRE_BASE, REDIRECT_URI }
-	
-	
-	/* PRODUCTION */
-	var CLIENT_ID = 'wGMKIVrPZrduAQZ5zgMib8t3PHqNA0e0';
+	var CLIENT_ID = 'WSa98CZfA32N1ew7v50WFDBEHT6DNEND';
 	
 	var FIRE_BASE = {
 	  apiKey: "AIzaSyDZGBlaWtfjB1o8SzsD-Aj0d_IVAg8Mc5Q",
@@ -23837,9 +23821,24 @@
 	  messagingSenderId: "751368319884"
 	};
 	
-	var REDIRECT_URI = 'https://sc-playroom.herokuapp.com/callback';
+	var REDIRECT_URI = 'http://localhost:1337/callback';
 	
 	module.exports = { CLIENT_ID: CLIENT_ID, FIRE_BASE: FIRE_BASE, REDIRECT_URI: REDIRECT_URI };
+	
+	/* PRODUCTION */
+	// const CLIENT_ID = 'wGMKIVrPZrduAQZ5zgMib8t3PHqNA0e0';
+	
+	// const FIRE_BASE = {
+	//   apiKey: "AIzaSyDZGBlaWtfjB1o8SzsD-Aj0d_IVAg8Mc5Q",
+	//   authDomain: "sharing-playlist-application.firebaseapp.com",
+	//   databaseURL: "https://sharing-playlist-application.firebaseio.com",
+	//   storageBucket: "sharing-playlist-application.appspot.com",
+	//   messagingSenderId: "751368319884"
+	// }
+	
+	// const REDIRECT_URI = 'https://sc-playroom.herokuapp.com/callback';
+	
+	// module.exports = { CLIENT_ID, FIRE_BASE, REDIRECT_URI }
 
 /***/ },
 /* 218 */
@@ -30093,11 +30092,6 @@
 	    return _this;
 	  }
 	
-	  // componentWillMount() {
-	  //   this.props.authenticate();
-	  //   this.props.updateHistory(this.props.auth.user.id);
-	  // }
-	
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
@@ -30129,7 +30123,7 @@
 	          _react2.default.createElement(
 	            _Toolbar.ToolbarGroup,
 	            { style: { textAlign: 'center' } },
-	            _react2.default.createElement(_Toolbar.ToolbarTitle, { style: { fontSize: '0.8rem' }, text: audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? audio.tracks[audio.current_track].title + ' [' + (audio.current_track + 1) + '/' + audio.tracks.length + ']' : 'Welcome, ' + auth.user.username + '!' })
+	            _react2.default.createElement(_Toolbar.ToolbarTitle, { style: { fontSize: '1rem' }, text: audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? audio.tracks[audio.current_track].title + ' [' + (audio.current_track + 1) + '/' + audio.tracks.length + ']' : 'Welcome' + (auth.user && auth.user.username ? ', ' + auth.user.username + '!' : '!') })
 	          ),
 	          audio.tracks ? _react2.default.createElement(
 	            _Toolbar.ToolbarGroup,
@@ -30161,7 +30155,7 @@
 	                } },
 	              _react2.default.createElement(_fastForward2.default, null)
 	            ),
-	            _react2.default.createElement(_Toolbar.ToolbarTitle, { text: '-' + String((0, _util.displayRemainder)(audio.remainder)), style: { fontSize: '0.8rem' } })
+	            _react2.default.createElement(_Toolbar.ToolbarTitle, { text: '-' + String((0, _util.displayRemainder)(audio.remainder)), style: { fontSize: '1rem' } })
 	          ) : _react2.default.createElement(_Toolbar.ToolbarGroup, { style: { width: '20%' } })
 	        ),
 	        _react2.default.createElement(
@@ -60463,9 +60457,9 @@
 	
 	var _auth = __webpack_require__(287);
 	
-	var _FloatingActionButton = __webpack_require__(490);
+	var _RaisedButton = __webpack_require__(490);
 	
-	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 	
 	var _Footer = __webpack_require__(492);
 	
@@ -60502,13 +60496,13 @@
 	
 	      return _react2.default.createElement(
 	        'section',
-	        { className: 'col-xs-offset-3 col-xs-6', style: { paddingTop: '10vh' } },
+	        { className: 'col-xs-offset-1 col-xs-10', style: { paddingTop: '20vh' } },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
 	            'h1',
-	            { style: { fontSize: '2rem' } },
+	            { style: { fontSize: '5rem' } },
 	            'WELCOME TO PLAYROOM'
 	          )
 	        ),
@@ -60517,7 +60511,7 @@
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
 	            'p',
-	            { style: { fontWeight: 300 } },
+	            { style: { fontWeight: 300, fontSize: '3rem' } },
 	            'Share your favorite songs with your friends!'
 	          )
 	        ),
@@ -60526,13 +60520,9 @@
 	          'div',
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
-	            _FloatingActionButton2.default,
-	            { backgroundColor: 'rgb(255, 65, 0)', onTouchTap: this.openAuth },
-	            _react2.default.createElement(
-	              'p',
-	              { style: { color: '#FFF', padding: 0, margin: 0 } },
-	              'ENTER'
-	            )
+	            'div',
+	            { className: 'col-lg-6 col-sm-12' },
+	            _react2.default.createElement(_RaisedButton2.default, { label: 'Enter', fullWidth: true, backgroundColor: 'rgb(255, 65, 0)', onTouchTap: this.openAuth, labelColor: '#FFF', labelStyle: { fontSize: '3rem' }, buttonStyle: { height: '5rem', borderRadius: '2.5rem' }, style: { borderRadius: '2.5rem', backgroundColor: 'rgb(255, 65, 0' } })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -60558,6 +60548,7 @@
 	  return { auth: auth };
 	};
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { authenticate: _auth.authenticate, updateHistory: _auth.updateHistory })(Login);
+	//<FloatingActionButton  style={{height: '10vh', width: '10vh'}}><p style={{color: '#FFF', padding: 0, margin: 0}}>ENTER</p></FloatingActionButton>
 
 /***/ },
 /* 490 */
@@ -60570,13 +60561,13 @@
 	});
 	exports.default = undefined;
 	
-	var _FloatingActionButton = __webpack_require__(491);
+	var _RaisedButton = __webpack_require__(491);
 	
-	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _FloatingActionButton2.default;
+	exports.default = _RaisedButton2.default;
 
 /***/ },
 /* 491 */
@@ -60630,176 +60621,220 @@
 	
 	var _colorManipulator = __webpack_require__(464);
 	
+	var _childUtils = __webpack_require__(401);
+	
 	var _EnhancedButton = __webpack_require__(400);
 	
 	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
-	
-	var _FontIcon = __webpack_require__(429);
-	
-	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
 	var _Paper = __webpack_require__(444);
 	
 	var _Paper2 = _interopRequireDefault(_Paper);
 	
-	var _childUtils = __webpack_require__(401);
-	
-	var _warning = __webpack_require__(239);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
-	var _propTypes = __webpack_require__(399);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function getStyles(props, context) {
-	  var floatingActionButton = context.muiTheme.floatingActionButton;
-	
-	
-	  var backgroundColor = props.backgroundColor || floatingActionButton.color;
-	  var iconColor = floatingActionButton.iconColor;
-	
-	  if (props.disabled) {
-	    backgroundColor = props.disabledColor || floatingActionButton.disabledColor;
-	    iconColor = floatingActionButton.disabledTextColor;
-	  } else if (props.secondary) {
-	    backgroundColor = floatingActionButton.secondaryColor;
-	    iconColor = floatingActionButton.secondaryIconColor;
+	function validateLabel(props, propName, componentName) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (!props.children && props.label !== 0 && !props.label && !props.icon) {
+	      return new Error('Required prop label or children or icon was not specified in ' + componentName + '.');
+	    }
 	  }
+	}
+	
+	function getStyles(props, context, state) {
+	  var _context$muiTheme = context.muiTheme,
+	      baseTheme = _context$muiTheme.baseTheme,
+	      button = _context$muiTheme.button,
+	      raisedButton = _context$muiTheme.raisedButton;
+	  var disabled = props.disabled,
+	      disabledBackgroundColor = props.disabledBackgroundColor,
+	      disabledLabelColor = props.disabledLabelColor,
+	      fullWidth = props.fullWidth,
+	      icon = props.icon,
+	      label = props.label,
+	      labelPosition = props.labelPosition,
+	      primary = props.primary,
+	      secondary = props.secondary,
+	      style = props.style;
+	
+	
+	  var amount = primary || secondary ? 0.4 : 0.08;
+	
+	  var backgroundColor = raisedButton.color;
+	  var labelColor = raisedButton.textColor;
+	
+	  if (disabled) {
+	    backgroundColor = disabledBackgroundColor || raisedButton.disabledColor;
+	    labelColor = disabledLabelColor || raisedButton.disabledTextColor;
+	  } else if (primary) {
+	    backgroundColor = raisedButton.primaryColor;
+	    labelColor = raisedButton.primaryTextColor;
+	  } else if (secondary) {
+	    backgroundColor = raisedButton.secondaryColor;
+	    labelColor = raisedButton.secondaryTextColor;
+	  } else {
+	    if (props.backgroundColor) {
+	      backgroundColor = props.backgroundColor;
+	    }
+	    if (props.labelColor) {
+	      labelColor = props.labelColor;
+	    }
+	  }
+	
+	  var buttonHeight = style && style.height || button.height;
+	  var borderRadius = 2;
 	
 	  return {
 	    root: {
-	      transition: _transitions2.default.easeOut(),
 	      display: 'inline-block',
-	      backgroundColor: 'transparent'
-	    },
-	    container: {
-	      backgroundColor: backgroundColor,
 	      transition: _transitions2.default.easeOut(),
-	      height: floatingActionButton.buttonSize,
-	      width: floatingActionButton.buttonSize,
-	      padding: 0,
-	      overflow: 'hidden',
-	      borderRadius: '50%',
-	      textAlign: 'center',
-	      verticalAlign: 'bottom'
+	      minWidth: fullWidth ? '100%' : button.minWidth
 	    },
-	    containerWhenMini: {
-	      height: floatingActionButton.miniSize,
-	      width: floatingActionButton.miniSize
+	    button: {
+	      height: buttonHeight,
+	      lineHeight: buttonHeight + 'px',
+	      width: '100%',
+	      padding: 0,
+	      borderRadius: borderRadius,
+	      transition: _transitions2.default.easeOut(),
+	      backgroundColor: backgroundColor,
+	      // That's the default value for a button but not a link
+	      textAlign: 'center'
+	    },
+	    label: {
+	      position: 'relative',
+	      opacity: 1,
+	      fontSize: raisedButton.fontSize,
+	      letterSpacing: 0,
+	      textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
+	      fontWeight: raisedButton.fontWeight,
+	      margin: 0,
+	      userSelect: 'none',
+	      paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+	      paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
+	      color: labelColor
+	    },
+	    icon: {
+	      verticalAlign: 'middle',
+	      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
+	      marginRight: label && labelPosition === 'before' ? 12 : 0
 	    },
 	    overlay: {
+	      height: buttonHeight,
+	      borderRadius: borderRadius,
+	      backgroundColor: (state.keyboardFocused || state.hovered) && !disabled && (0, _colorManipulator.fade)(labelColor, amount),
 	      transition: _transitions2.default.easeOut(),
 	      top: 0
 	    },
-	    overlayWhenHovered: {
-	      backgroundColor: (0, _colorManipulator.fade)(iconColor, 0.4)
-	    },
-	    icon: {
-	      height: floatingActionButton.buttonSize,
-	      lineHeight: floatingActionButton.buttonSize + 'px',
-	      fill: iconColor,
-	      color: iconColor
-	    },
-	    iconWhenMini: {
-	      height: floatingActionButton.miniSize,
-	      lineHeight: floatingActionButton.miniSize + 'px'
+	    ripple: {
+	      color: labelColor,
+	      opacity: !(primary || secondary) ? 0.1 : 0.16
 	    }
 	  };
 	}
 	
-	var FloatingActionButton = function (_Component) {
-	  (0, _inherits3.default)(FloatingActionButton, _Component);
+	var RaisedButton = function (_Component) {
+	  (0, _inherits3.default)(RaisedButton, _Component);
 	
-	  function FloatingActionButton() {
+	  function RaisedButton() {
 	    var _ref;
 	
 	    var _temp, _this, _ret;
 	
-	    (0, _classCallCheck3.default)(this, FloatingActionButton);
+	    (0, _classCallCheck3.default)(this, RaisedButton);
 	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FloatingActionButton.__proto__ || (0, _getPrototypeOf2.default)(FloatingActionButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = RaisedButton.__proto__ || (0, _getPrototypeOf2.default)(RaisedButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      hovered: false,
-	      touch: false,
-	      zDepth: undefined
+	      keyboardFocused: false,
+	      touched: false,
+	      initialZDepth: 0,
+	      zDepth: 0
 	    }, _this.handleMouseDown = function (event) {
 	      // only listen to left clicks
 	      if (event.button === 0) {
-	        _this.setState({ zDepth: _this.props.zDepth + 1 });
+	        _this.setState({
+	          zDepth: _this.state.initialZDepth + 1
+	        });
 	      }
-	      if (_this.props.onMouseDown) _this.props.onMouseDown(event);
+	      if (_this.props.onMouseDown) {
+	        _this.props.onMouseDown(event);
+	      }
 	    }, _this.handleMouseUp = function (event) {
-	      _this.setState({ zDepth: _this.props.zDepth });
+	      _this.setState({
+	        zDepth: _this.state.initialZDepth
+	      });
 	      if (_this.props.onMouseUp) {
 	        _this.props.onMouseUp(event);
 	      }
 	    }, _this.handleMouseLeave = function (event) {
-	      if (!_this.refs.container.isKeyboardFocused()) {
-	        _this.setState({ zDepth: _this.props.zDepth, hovered: false });
+	      if (!_this.state.keyboardFocused) {
+	        _this.setState({
+	          zDepth: _this.state.initialZDepth,
+	          hovered: false
+	        });
 	      }
 	      if (_this.props.onMouseLeave) {
 	        _this.props.onMouseLeave(event);
 	      }
 	    }, _this.handleMouseEnter = function (event) {
-	      if (!_this.refs.container.isKeyboardFocused() && !_this.state.touch) {
-	        _this.setState({ hovered: true });
+	      if (!_this.state.keyboardFocused && !_this.state.touched) {
+	        _this.setState({
+	          hovered: true
+	        });
 	      }
 	      if (_this.props.onMouseEnter) {
 	        _this.props.onMouseEnter(event);
 	      }
 	    }, _this.handleTouchStart = function (event) {
 	      _this.setState({
-	        touch: true,
-	        zDepth: _this.props.zDepth + 1
+	        touched: true,
+	        zDepth: _this.state.initialZDepth + 1
 	      });
+	
 	      if (_this.props.onTouchStart) {
 	        _this.props.onTouchStart(event);
 	      }
 	    }, _this.handleTouchEnd = function (event) {
 	      _this.setState({
-	        touch: true,
-	        zDepth: _this.props.zDepth
+	        touched: true,
+	        zDepth: _this.state.initialZDepth
 	      });
+	
 	      if (_this.props.onTouchEnd) {
 	        _this.props.onTouchEnd(event);
 	      }
 	    }, _this.handleKeyboardFocus = function (event, keyboardFocused) {
-	      if (keyboardFocused && !_this.props.disabled) {
-	        _this.setState({ zDepth: _this.props.zDepth + 1 });
-	        _this.refs.overlay.style.backgroundColor = (0, _colorManipulator.fade)(getStyles(_this.props, _this.context).icon.color, 0.4);
-	      } else if (!_this.state.hovered) {
-	        _this.setState({ zDepth: _this.props.zDepth });
-	        _this.refs.overlay.style.backgroundColor = 'transparent';
-	      }
+	      var zDepth = keyboardFocused && !_this.props.disabled ? _this.state.initialZDepth + 1 : _this.state.initialZDepth;
+	
+	      _this.setState({
+	        zDepth: zDepth,
+	        keyboardFocused: keyboardFocused
+	      });
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
 	
-	  (0, _createClass3.default)(FloatingActionButton, [{
+	  (0, _createClass3.default)(RaisedButton, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      var zDepth = this.props.disabled ? 0 : 1;
 	      this.setState({
-	        zDepth: this.props.disabled ? 0 : this.props.zDepth
+	        zDepth: zDepth,
+	        initialZDepth: zDepth
 	      });
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      process.env.NODE_ENV !== "production" ? (0, _warning2.default)(!this.props.iconClassName || !this.props.children, 'Material-UI: You have set both an iconClassName and a child icon. ' + 'It is recommended you use only one method when adding ' + 'icons to FloatingActionButtons.') : void 0;
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
-	      var nextState = {};
+	      var zDepth = nextProps.disabled ? 0 : 1;
+	      var nextState = {
+	        zDepth: zDepth,
+	        initialZDepth: zDepth
+	      };
 	
-	      if (nextProps.disabled !== this.props.disabled) {
-	        nextState.zDepth = nextProps.disabled ? 0 : this.props.zDepth;
-	      }
 	      if (nextProps.disabled) {
 	        nextState.hovered = false;
 	      }
@@ -60811,38 +60846,30 @@
 	    value: function render() {
 	      var _props = this.props,
 	          backgroundColor = _props.backgroundColor,
+	          buttonStyle = _props.buttonStyle,
+	          children = _props.children,
 	          className = _props.className,
-	          childrenProp = _props.children,
 	          disabled = _props.disabled,
-	          mini = _props.mini,
+	          disabledBackgroundColor = _props.disabledBackgroundColor,
+	          disabledLabelColor = _props.disabledLabelColor,
+	          fullWidth = _props.fullWidth,
+	          icon = _props.icon,
+	          label = _props.label,
+	          labelColor = _props.labelColor,
+	          labelPosition = _props.labelPosition,
+	          labelStyle = _props.labelStyle,
+	          overlayStyle = _props.overlayStyle,
+	          primary = _props.primary,
+	          rippleStyle = _props.rippleStyle,
 	          secondary = _props.secondary,
-	          iconStyle = _props.iconStyle,
-	          iconClassName = _props.iconClassName,
-	          zDepth = _props.zDepth,
-	          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'className', 'children', 'disabled', 'mini', 'secondary', 'iconStyle', 'iconClassName', 'zDepth']);
+	          style = _props.style,
+	          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'buttonStyle', 'children', 'className', 'disabled', 'disabledBackgroundColor', 'disabledLabelColor', 'fullWidth', 'icon', 'label', 'labelColor', 'labelPosition', 'labelStyle', 'overlayStyle', 'primary', 'rippleStyle', 'secondary', 'style']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
 	
-	      var styles = getStyles(this.props, this.context);
+	      var styles = getStyles(this.props, this.context, this.state);
+	      var mergedRippleStyles = (0, _simpleAssign2.default)({}, styles.ripple, rippleStyle);
 	
-	      var iconElement = void 0;
-	      if (iconClassName) {
-	        iconElement = _react2.default.createElement(_FontIcon2.default, {
-	          className: iconClassName,
-	          style: (0, _simpleAssign2.default)({}, styles.icon, mini && styles.iconWhenMini, iconStyle)
-	        });
-	      }
-	
-	      var children = void 0;
-	
-	      if (childrenProp) {
-	        children = (0, _childUtils.extendChildren)(childrenProp, function (child) {
-	          return {
-	            style: (0, _simpleAssign2.default)({}, styles.icon, mini && styles.iconWhenMini, iconStyle, child.props.style)
-	          };
-	        });
-	      }
-	
-	      var buttonEventHandlers = disabled ? null : {
+	      var buttonEventHandlers = disabled ? {} : {
 	        onMouseDown: this.handleMouseDown,
 	        onMouseUp: this.handleMouseUp,
 	        onMouseLeave: this.handleMouseLeave,
@@ -60852,91 +60879,138 @@
 	        onKeyboardFocus: this.handleKeyboardFocus
 	      };
 	
+	      var labelElement = label && _react2.default.createElement(
+	        'span',
+	        { style: prepareStyles((0, _simpleAssign2.default)(styles.label, labelStyle)) },
+	        label
+	      );
+	
+	      var iconCloned = icon && (0, _react.cloneElement)(icon, {
+	        color: icon.props.color || styles.label.color,
+	        style: (0, _simpleAssign2.default)(styles.icon, icon.props.style)
+	      });
+	
+	      // Place label before or after children.
+	      var childrenFragment = labelPosition === 'before' ? {
+	        labelElement: labelElement,
+	        iconCloned: iconCloned,
+	        children: children
+	      } : {
+	        children: children,
+	        iconCloned: iconCloned,
+	        labelElement: labelElement
+	      };
+	
+	      var enhancedButtonChildren = (0, _childUtils.createChildFragment)(childrenFragment);
+	
 	      return _react2.default.createElement(
 	        _Paper2.default,
 	        {
 	          className: className,
-	          style: (0, _simpleAssign2.default)(styles.root, this.props.style),
-	          zDepth: this.state.zDepth,
-	          circle: true
+	          style: (0, _simpleAssign2.default)(styles.root, style),
+	          zDepth: this.state.zDepth
 	        },
 	        _react2.default.createElement(
 	          _EnhancedButton2.default,
 	          (0, _extends3.default)({}, other, buttonEventHandlers, {
 	            ref: 'container',
 	            disabled: disabled,
-	            style: (0, _simpleAssign2.default)(styles.container, this.props.mini && styles.containerWhenMini, iconStyle),
-	            focusRippleColor: styles.icon.color,
-	            touchRippleColor: styles.icon.color
+	            style: (0, _simpleAssign2.default)(styles.button, buttonStyle),
+	            focusRippleColor: mergedRippleStyles.color,
+	            touchRippleColor: mergedRippleStyles.color,
+	            focusRippleOpacity: mergedRippleStyles.opacity,
+	            touchRippleOpacity: mergedRippleStyles.opacity
 	          }),
 	          _react2.default.createElement(
 	            'div',
 	            {
 	              ref: 'overlay',
-	              style: prepareStyles((0, _simpleAssign2.default)(styles.overlay, this.state.hovered && !this.props.disabled && styles.overlayWhenHovered))
+	              style: prepareStyles((0, _simpleAssign2.default)(styles.overlay, overlayStyle))
 	            },
-	            iconElement,
-	            children
+	            enhancedButtonChildren
 	          )
 	        )
 	      );
 	    }
 	  }]);
-	  return FloatingActionButton;
+	  return RaisedButton;
 	}(_react.Component);
 	
-	FloatingActionButton.defaultProps = {
+	RaisedButton.muiName = 'RaisedButton';
+	RaisedButton.defaultProps = {
 	  disabled: false,
-	  mini: false,
-	  secondary: false,
-	  zDepth: 2
+	  labelPosition: 'after',
+	  fullWidth: false,
+	  primary: false,
+	  secondary: false
 	};
-	FloatingActionButton.contextTypes = {
+	RaisedButton.contextTypes = {
 	  muiTheme: _react.PropTypes.object.isRequired
 	};
-	process.env.NODE_ENV !== "production" ? FloatingActionButton.propTypes = {
+	process.env.NODE_ENV !== "production" ? RaisedButton.propTypes = {
 	  /**
-	   * This value will override the default background color for the button.
-	   * However it will not override the default disabled background color.
-	   * This has to be set separately using the disabledColor attribute.
+	   * Override the default background color for the button,
+	   * but not the default disabled background color
+	   * (use `disabledBackgroundColor` for this).
 	   */
 	  backgroundColor: _react.PropTypes.string,
 	  /**
-	   * This is what displayed inside the floating action button; for example, a SVG Icon.
+	   * Override the inline-styles of the button element.
+	   */
+	  buttonStyle: _react.PropTypes.object,
+	  /**
+	   * The content of the button.
+	   * If a label is provided via the `label` prop, the text within the label
+	   * will be displayed in addition to the content provided here.
 	   */
 	  children: _react.PropTypes.node,
 	  /**
-	   * The css class name of the root element.
+	   * The CSS class name of the root element.
 	   */
 	  className: _react.PropTypes.string,
 	  /**
-	   * Disables the button if set to true.
+	   * If true, the button will be disabled.
 	   */
 	  disabled: _react.PropTypes.bool,
 	  /**
-	   * This value will override the default background color for the button when it is disabled.
+	   * Override the default background color for the button
+	   * when it is disabled.
 	   */
-	  disabledColor: _react.PropTypes.string,
+	  disabledBackgroundColor: _react.PropTypes.string,
+	  /**
+	   * The color of the button's label when the button is disabled.
+	   */
+	  disabledLabelColor: _react.PropTypes.string,
+	  /**
+	   * If true, the button will take up the full width of its container.
+	   */
+	  fullWidth: _react.PropTypes.bool,
 	  /**
 	   * The URL to link to when the button is clicked.
 	   */
 	  href: _react.PropTypes.string,
 	  /**
-	   * The icon within the FloatingActionButton is a FontIcon component.
-	   * This property is the classname of the icon to be displayed inside the button.
-	   * An alternative to adding an iconClassName would be to manually insert a
-	   * FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.
+	   * An icon to be displayed within the button.
 	   */
-	  iconClassName: _react.PropTypes.string,
+	  icon: _react.PropTypes.node,
 	  /**
-	   * This is the equivalent to iconClassName except that it is used for
-	   * overriding the inline-styles of the FontIcon component.
+	   * The label to be displayed within the button.
+	   * If content is provided via the `children` prop, that content will be
+	   * displayed in addition to the label provided here.
 	   */
-	  iconStyle: _react.PropTypes.object,
+	  label: validateLabel,
 	  /**
-	   * If true, the button will be a small floating action button.
+	   * The color of the button's label.
 	   */
-	  mini: _react.PropTypes.bool,
+	  labelColor: _react.PropTypes.string,
+	  /**
+	   * The position of the button's label relative to the button's `children`.
+	   */
+	  labelPosition: _react.PropTypes.oneOf(['before', 'after']),
+	  /**
+	   * Override the inline-styles of the button's label element.
+	   */
+	  labelStyle: _react.PropTypes.object,
 	  /** @ignore */
 	  onMouseDown: _react.PropTypes.func,
 	  /** @ignore */
@@ -60950,19 +61024,29 @@
 	  /** @ignore */
 	  onTouchStart: _react.PropTypes.func,
 	  /**
-	   * If true, the button will use the secondary button colors.
+	   * Override the inline style of the button overlay.
+	   */
+	  overlayStyle: _react.PropTypes.object,
+	  /**
+	   * If true, the button will use the theme's primary color.
+	   */
+	  primary: _react.PropTypes.bool,
+	  /**
+	   * Override the inline style of the ripple element.
+	   */
+	  rippleStyle: _react.PropTypes.object,
+	  /**
+	   * If true, the button will use the theme's secondary color.
+	   * If both `secondary` and `primary` are true, the button will use
+	   * the theme's primary color.
 	   */
 	  secondary: _react.PropTypes.bool,
 	  /**
 	   * Override the inline-styles of the root element.
 	   */
-	  style: _react.PropTypes.object,
-	  /**
-	   * The zDepth of the underlying `Paper` component.
-	   */
-	  zDepth: _propTypes2.default.zDepth
+	  style: _react.PropTypes.object
 	} : void 0;
-	exports.default = FloatingActionButton;
+	exports.default = RaisedButton;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
@@ -61047,6 +61131,8 @@
 	  value: true
 	});
 	
+	var _input;
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -61079,11 +61165,11 @@
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
-	var _RaisedButton = __webpack_require__(534);
+	var _RaisedButton = __webpack_require__(490);
 	
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 	
-	var _FloatingActionButton = __webpack_require__(490);
+	var _FloatingActionButton = __webpack_require__(534);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -61100,6 +61186,8 @@
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -61154,7 +61242,7 @@
 	        return _react2.default.createElement(_List.ListItem, { key: playroom.id,
 	          primaryText: playroom.roomname,
 	          secondaryText: playroom.creator.username,
-	          rightIcon: _this.state.hoverListItem == playroom.id ? _react2.default.createElement(_playCircleFilled2.default, { color: 'rgb(255, 65, 0)' }) : _react2.default.createElement(_playCircleOutline2.default, null),
+	          rightIcon: _this.state.hoverListItem == playroom.id ? _react2.default.createElement(_playCircleFilled2.default, { color: 'rgb(255, 65, 0)', style: { height: '3rem', width: '3rem' } }) : _react2.default.createElement(_playCircleOutline2.default, { style: { height: '3rem', width: '3rem' } }),
 	          onTouchTap: function onTouchTap() {
 	            return _this.enterPlayroomModal(playroom);
 	          },
@@ -61162,7 +61250,8 @@
 	            return _this.mouseEnterListItem(playroom.id);
 	          },
 	          onMouseLeave: _this.mouseLeaveListItem,
-	          hoverColor: 'rgba(0, 0, 0, 0.02)'
+	          hoverColor: 'rgba(0, 0, 0, 0.02)',
+	          style: { fontSize: '2rem', lineHeight: '120%' }
 	        });
 	      });
 	    };
@@ -61184,23 +61273,14 @@
 	
 	      return _react2.default.createElement(
 	        'section',
-	        { className: 'col-xs-offset-3 col-xs-6', style: { paddingTop: '10vh' } },
+	        { className: 'col-xs-offset-1 col-xs-10', style: { paddingTop: '20vh' } },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
 	            'h1',
-	            { style: { fontSize: '2rem' } },
-	            'WELCOME TO PLAYROOM'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row center-xs' },
-	          _react2.default.createElement(
-	            'p',
-	            { style: { fontWeight: 300 } },
-	            'Share your favorite songs with your friends!'
+	            { style: { fontSize: '5rem' } },
+	            'PLAYROOM SEARCH'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -61222,33 +61302,40 @@
 	            { className: 'row center-xs' },
 	            _react2.default.createElement(
 	              'p',
-	              null,
+	              { style: { fontSize: '2rem', color: 'rgb(255, 65, 0)' } },
 	              'We\'ve found ',
 	              this.state.queriedPlayrooms.length,
 	              ' related playrooms'
 	            )
 	          ),
 	          _react2.default.createElement(
-	            _List.List,
-	            null,
-	            this.renderQueryResult()
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-offset-3 col-xs-6' },
+	              _react2.default.createElement(
+	                _List.List,
+	                null,
+	                this.renderQueryResult()
+	              )
+	            )
 	          )
 	        ) : '',
 	        _react2.default.createElement(
 	          _Dialog2.default,
 	          {
-	            title: '4-digit Passcode',
-	            titleStyle: { textAlign: 'center' },
+	            title: 'Enter 4-digit Passcode',
+	            titleStyle: { textAlign: 'center', fontSize: '3rem' },
 	            modal: false,
 	            open: this.state.modal,
 	            onRequestClose: this.handleCloseModal
 	          },
+	          _react2.default.createElement('div', { style: { height: '5vh' } }),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row center-xs', style: { marginTop: '2vh' } },
-	            'Enter 4-digit Passcode to access ',
-	            this.state.selectedPlayroom.roomname,
-	            '!'
+	            { className: 'row center-xs', style: { fontSize: '3rem', color: 'rgb(255, 65, 0)' } },
+	            this.state.selectedPlayroom.roomname
 	          ),
 	          _react2.default.createElement(
 	            'form',
@@ -61257,20 +61344,27 @@
 	              } },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'row center-xs', style: { marginTop: '5vh' } },
-	              _react2.default.createElement(_TextField2.default, {
-	                hintText: 'Enter 4-digit passcode',
-	                floatingLabelText: 'Passcode',
-	                type: 'password',
+	              { className: 'row center-xs', style: { marginTop: '2vh' } },
+	              _react2.default.createElement('input', {
 	                onChange: function onChange(e) {
 	                  return _this2.setState({ accessKey: e.target.value });
-	                }
+	                },
+	                placeholder: '4-digit Number',
+	                type: 'password',
+	                id: 'queryPlayroom',
+	                autoFocus: true,
+	                style: styles.passcode
 	              })
 	            ),
+	            _react2.default.createElement('div', { style: { height: '5vh' } }),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'row center-xs', style: { marginTop: '5vh' } },
-	              _react2.default.createElement(_RaisedButton2.default, { label: 'ENTER', primary: true, style: { margin: 12 }, type: 'submit' })
+	              { className: 'row center-xs' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'col-xs-12' },
+	                _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Enter', fullWidth: true, backgroundColor: 'rgb(255, 65, 0)', labelColor: '#FFF', labelStyle: { fontSize: '3rem' }, buttonStyle: { height: '5rem' }, style: { backgroundColor: 'rgb(255, 65, 0' } })
+	              )
 	            )
 	          )
 	        ),
@@ -61298,18 +61392,30 @@
 	}(_react2.default.Component);
 	
 	var styles = {
-	  input: {
+	  input: (_input = {
 	    color: '#000',
-	    fontSize: '2rem',
+	    fontSize: '3rem',
 	    fontWeight: '500',
 	    lineHeight: '120%',
 	    outline: 0,
 	    marginTop: '5%',
 	    display: 'block',
 	    background: 0,
-	    border: 0,
-	    borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
-	    textAlign: 'center'
+	    border: 0
+	  }, _defineProperty(_input, 'border', '0.5rem solid rgba(0, 0, 0, 0.2)'), _defineProperty(_input, 'borderRadius', '3rem'), _defineProperty(_input, 'textAlign', 'center'), _defineProperty(_input, 'width', '80%'), _input),
+	  passcode: {
+	    color: '#000',
+	    fontSize: '3rem',
+	    fontWeight: '500',
+	    lineHeight: '120%',
+	    outline: 0,
+	    marginTop: '5%',
+	    display: 'block',
+	    background: 0,
+	    border: '0.5rem solid rgba(0, 0, 0, 0.2)',
+	    borderRadius: '3rem',
+	    textAlign: 'center',
+	    width: '60%'
 	  },
 	  fab: {
 	    marginRight: 20,
@@ -61325,6 +61431,17 @@
 	  return { auth: auth, playrooms: playrooms };
 	};
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchFavoriteTracks: _favorite.fetchFavoriteTracks, fetchAllPlayrooms: _playroom.fetchAllPlayrooms, enterPlayroom: _playroom.enterPlayroom })(Main);
+	//<div className="row center-xs"><p style={{fontWeight: 300, fontSize: '3rem'}}>Share your favorite songs with your friends!</p></div>
+	/*
+	
+	                <TextField
+	                  onChange={(e) => this.setState({accessKey: e.target.value })}
+	                  hintText="Enter 4-digit passcode"
+	                  floatingLabelText="Passcode"
+	                  type="password"
+	                  textareaStyle={{height: '3rem'}}
+	                />
+	*/
 
 /***/ },
 /* 495 */
@@ -65056,13 +65173,13 @@
 	});
 	exports.default = undefined;
 	
-	var _RaisedButton = __webpack_require__(535);
+	var _FloatingActionButton = __webpack_require__(535);
 	
-	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _RaisedButton2.default;
+	exports.default = _FloatingActionButton2.default;
 
 /***/ },
 /* 535 */
@@ -65116,220 +65233,176 @@
 	
 	var _colorManipulator = __webpack_require__(464);
 	
-	var _childUtils = __webpack_require__(401);
-	
 	var _EnhancedButton = __webpack_require__(400);
 	
 	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
+	
+	var _FontIcon = __webpack_require__(429);
+	
+	var _FontIcon2 = _interopRequireDefault(_FontIcon);
 	
 	var _Paper = __webpack_require__(444);
 	
 	var _Paper2 = _interopRequireDefault(_Paper);
 	
+	var _childUtils = __webpack_require__(401);
+	
+	var _warning = __webpack_require__(239);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
+	var _propTypes = __webpack_require__(399);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function validateLabel(props, propName, componentName) {
-	  if (process.env.NODE_ENV !== 'production') {
-	    if (!props.children && props.label !== 0 && !props.label && !props.icon) {
-	      return new Error('Required prop label or children or icon was not specified in ' + componentName + '.');
-	    }
+	function getStyles(props, context) {
+	  var floatingActionButton = context.muiTheme.floatingActionButton;
+	
+	
+	  var backgroundColor = props.backgroundColor || floatingActionButton.color;
+	  var iconColor = floatingActionButton.iconColor;
+	
+	  if (props.disabled) {
+	    backgroundColor = props.disabledColor || floatingActionButton.disabledColor;
+	    iconColor = floatingActionButton.disabledTextColor;
+	  } else if (props.secondary) {
+	    backgroundColor = floatingActionButton.secondaryColor;
+	    iconColor = floatingActionButton.secondaryIconColor;
 	  }
-	}
-	
-	function getStyles(props, context, state) {
-	  var _context$muiTheme = context.muiTheme,
-	      baseTheme = _context$muiTheme.baseTheme,
-	      button = _context$muiTheme.button,
-	      raisedButton = _context$muiTheme.raisedButton;
-	  var disabled = props.disabled,
-	      disabledBackgroundColor = props.disabledBackgroundColor,
-	      disabledLabelColor = props.disabledLabelColor,
-	      fullWidth = props.fullWidth,
-	      icon = props.icon,
-	      label = props.label,
-	      labelPosition = props.labelPosition,
-	      primary = props.primary,
-	      secondary = props.secondary,
-	      style = props.style;
-	
-	
-	  var amount = primary || secondary ? 0.4 : 0.08;
-	
-	  var backgroundColor = raisedButton.color;
-	  var labelColor = raisedButton.textColor;
-	
-	  if (disabled) {
-	    backgroundColor = disabledBackgroundColor || raisedButton.disabledColor;
-	    labelColor = disabledLabelColor || raisedButton.disabledTextColor;
-	  } else if (primary) {
-	    backgroundColor = raisedButton.primaryColor;
-	    labelColor = raisedButton.primaryTextColor;
-	  } else if (secondary) {
-	    backgroundColor = raisedButton.secondaryColor;
-	    labelColor = raisedButton.secondaryTextColor;
-	  } else {
-	    if (props.backgroundColor) {
-	      backgroundColor = props.backgroundColor;
-	    }
-	    if (props.labelColor) {
-	      labelColor = props.labelColor;
-	    }
-	  }
-	
-	  var buttonHeight = style && style.height || button.height;
-	  var borderRadius = 2;
 	
 	  return {
 	    root: {
+	      transition: _transitions2.default.easeOut(),
 	      display: 'inline-block',
-	      transition: _transitions2.default.easeOut(),
-	      minWidth: fullWidth ? '100%' : button.minWidth
+	      backgroundColor: 'transparent'
 	    },
-	    button: {
-	      height: buttonHeight,
-	      lineHeight: buttonHeight + 'px',
-	      width: '100%',
-	      padding: 0,
-	      borderRadius: borderRadius,
-	      transition: _transitions2.default.easeOut(),
+	    container: {
 	      backgroundColor: backgroundColor,
-	      // That's the default value for a button but not a link
-	      textAlign: 'center'
+	      transition: _transitions2.default.easeOut(),
+	      height: floatingActionButton.buttonSize,
+	      width: floatingActionButton.buttonSize,
+	      padding: 0,
+	      overflow: 'hidden',
+	      borderRadius: '50%',
+	      textAlign: 'center',
+	      verticalAlign: 'bottom'
 	    },
-	    label: {
-	      position: 'relative',
-	      opacity: 1,
-	      fontSize: raisedButton.fontSize,
-	      letterSpacing: 0,
-	      textTransform: raisedButton.textTransform || button.textTransform || 'uppercase',
-	      fontWeight: raisedButton.fontWeight,
-	      margin: 0,
-	      userSelect: 'none',
-	      paddingLeft: icon && labelPosition !== 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
-	      paddingRight: icon && labelPosition === 'before' ? 8 : baseTheme.spacing.desktopGutterLess,
-	      color: labelColor
-	    },
-	    icon: {
-	      verticalAlign: 'middle',
-	      marginLeft: label && labelPosition !== 'before' ? 12 : 0,
-	      marginRight: label && labelPosition === 'before' ? 12 : 0
+	    containerWhenMini: {
+	      height: floatingActionButton.miniSize,
+	      width: floatingActionButton.miniSize
 	    },
 	    overlay: {
-	      height: buttonHeight,
-	      borderRadius: borderRadius,
-	      backgroundColor: (state.keyboardFocused || state.hovered) && !disabled && (0, _colorManipulator.fade)(labelColor, amount),
 	      transition: _transitions2.default.easeOut(),
 	      top: 0
 	    },
-	    ripple: {
-	      color: labelColor,
-	      opacity: !(primary || secondary) ? 0.1 : 0.16
+	    overlayWhenHovered: {
+	      backgroundColor: (0, _colorManipulator.fade)(iconColor, 0.4)
+	    },
+	    icon: {
+	      height: floatingActionButton.buttonSize,
+	      lineHeight: floatingActionButton.buttonSize + 'px',
+	      fill: iconColor,
+	      color: iconColor
+	    },
+	    iconWhenMini: {
+	      height: floatingActionButton.miniSize,
+	      lineHeight: floatingActionButton.miniSize + 'px'
 	    }
 	  };
 	}
 	
-	var RaisedButton = function (_Component) {
-	  (0, _inherits3.default)(RaisedButton, _Component);
+	var FloatingActionButton = function (_Component) {
+	  (0, _inherits3.default)(FloatingActionButton, _Component);
 	
-	  function RaisedButton() {
+	  function FloatingActionButton() {
 	    var _ref;
 	
 	    var _temp, _this, _ret;
 	
-	    (0, _classCallCheck3.default)(this, RaisedButton);
+	    (0, _classCallCheck3.default)(this, FloatingActionButton);
 	
 	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = RaisedButton.__proto__ || (0, _getPrototypeOf2.default)(RaisedButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = FloatingActionButton.__proto__ || (0, _getPrototypeOf2.default)(FloatingActionButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      hovered: false,
-	      keyboardFocused: false,
-	      touched: false,
-	      initialZDepth: 0,
-	      zDepth: 0
+	      touch: false,
+	      zDepth: undefined
 	    }, _this.handleMouseDown = function (event) {
 	      // only listen to left clicks
 	      if (event.button === 0) {
-	        _this.setState({
-	          zDepth: _this.state.initialZDepth + 1
-	        });
+	        _this.setState({ zDepth: _this.props.zDepth + 1 });
 	      }
-	      if (_this.props.onMouseDown) {
-	        _this.props.onMouseDown(event);
-	      }
+	      if (_this.props.onMouseDown) _this.props.onMouseDown(event);
 	    }, _this.handleMouseUp = function (event) {
-	      _this.setState({
-	        zDepth: _this.state.initialZDepth
-	      });
+	      _this.setState({ zDepth: _this.props.zDepth });
 	      if (_this.props.onMouseUp) {
 	        _this.props.onMouseUp(event);
 	      }
 	    }, _this.handleMouseLeave = function (event) {
-	      if (!_this.state.keyboardFocused) {
-	        _this.setState({
-	          zDepth: _this.state.initialZDepth,
-	          hovered: false
-	        });
+	      if (!_this.refs.container.isKeyboardFocused()) {
+	        _this.setState({ zDepth: _this.props.zDepth, hovered: false });
 	      }
 	      if (_this.props.onMouseLeave) {
 	        _this.props.onMouseLeave(event);
 	      }
 	    }, _this.handleMouseEnter = function (event) {
-	      if (!_this.state.keyboardFocused && !_this.state.touched) {
-	        _this.setState({
-	          hovered: true
-	        });
+	      if (!_this.refs.container.isKeyboardFocused() && !_this.state.touch) {
+	        _this.setState({ hovered: true });
 	      }
 	      if (_this.props.onMouseEnter) {
 	        _this.props.onMouseEnter(event);
 	      }
 	    }, _this.handleTouchStart = function (event) {
 	      _this.setState({
-	        touched: true,
-	        zDepth: _this.state.initialZDepth + 1
+	        touch: true,
+	        zDepth: _this.props.zDepth + 1
 	      });
-	
 	      if (_this.props.onTouchStart) {
 	        _this.props.onTouchStart(event);
 	      }
 	    }, _this.handleTouchEnd = function (event) {
 	      _this.setState({
-	        touched: true,
-	        zDepth: _this.state.initialZDepth
+	        touch: true,
+	        zDepth: _this.props.zDepth
 	      });
-	
 	      if (_this.props.onTouchEnd) {
 	        _this.props.onTouchEnd(event);
 	      }
 	    }, _this.handleKeyboardFocus = function (event, keyboardFocused) {
-	      var zDepth = keyboardFocused && !_this.props.disabled ? _this.state.initialZDepth + 1 : _this.state.initialZDepth;
-	
-	      _this.setState({
-	        zDepth: zDepth,
-	        keyboardFocused: keyboardFocused
-	      });
+	      if (keyboardFocused && !_this.props.disabled) {
+	        _this.setState({ zDepth: _this.props.zDepth + 1 });
+	        _this.refs.overlay.style.backgroundColor = (0, _colorManipulator.fade)(getStyles(_this.props, _this.context).icon.color, 0.4);
+	      } else if (!_this.state.hovered) {
+	        _this.setState({ zDepth: _this.props.zDepth });
+	        _this.refs.overlay.style.backgroundColor = 'transparent';
+	      }
 	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
 	  }
 	
-	  (0, _createClass3.default)(RaisedButton, [{
+	  (0, _createClass3.default)(FloatingActionButton, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      var zDepth = this.props.disabled ? 0 : 1;
 	      this.setState({
-	        zDepth: zDepth,
-	        initialZDepth: zDepth
+	        zDepth: this.props.disabled ? 0 : this.props.zDepth
 	      });
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      process.env.NODE_ENV !== "production" ? (0, _warning2.default)(!this.props.iconClassName || !this.props.children, 'Material-UI: You have set both an iconClassName and a child icon. ' + 'It is recommended you use only one method when adding ' + 'icons to FloatingActionButtons.') : void 0;
 	    }
 	  }, {
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
-	      var zDepth = nextProps.disabled ? 0 : 1;
-	      var nextState = {
-	        zDepth: zDepth,
-	        initialZDepth: zDepth
-	      };
+	      var nextState = {};
 	
+	      if (nextProps.disabled !== this.props.disabled) {
+	        nextState.zDepth = nextProps.disabled ? 0 : this.props.zDepth;
+	      }
 	      if (nextProps.disabled) {
 	        nextState.hovered = false;
 	      }
@@ -65341,30 +65414,38 @@
 	    value: function render() {
 	      var _props = this.props,
 	          backgroundColor = _props.backgroundColor,
-	          buttonStyle = _props.buttonStyle,
-	          children = _props.children,
 	          className = _props.className,
+	          childrenProp = _props.children,
 	          disabled = _props.disabled,
-	          disabledBackgroundColor = _props.disabledBackgroundColor,
-	          disabledLabelColor = _props.disabledLabelColor,
-	          fullWidth = _props.fullWidth,
-	          icon = _props.icon,
-	          label = _props.label,
-	          labelColor = _props.labelColor,
-	          labelPosition = _props.labelPosition,
-	          labelStyle = _props.labelStyle,
-	          overlayStyle = _props.overlayStyle,
-	          primary = _props.primary,
-	          rippleStyle = _props.rippleStyle,
+	          mini = _props.mini,
 	          secondary = _props.secondary,
-	          style = _props.style,
-	          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'buttonStyle', 'children', 'className', 'disabled', 'disabledBackgroundColor', 'disabledLabelColor', 'fullWidth', 'icon', 'label', 'labelColor', 'labelPosition', 'labelStyle', 'overlayStyle', 'primary', 'rippleStyle', 'secondary', 'style']);
+	          iconStyle = _props.iconStyle,
+	          iconClassName = _props.iconClassName,
+	          zDepth = _props.zDepth,
+	          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'className', 'children', 'disabled', 'mini', 'secondary', 'iconStyle', 'iconClassName', 'zDepth']);
 	      var prepareStyles = this.context.muiTheme.prepareStyles;
 	
-	      var styles = getStyles(this.props, this.context, this.state);
-	      var mergedRippleStyles = (0, _simpleAssign2.default)({}, styles.ripple, rippleStyle);
+	      var styles = getStyles(this.props, this.context);
 	
-	      var buttonEventHandlers = disabled ? {} : {
+	      var iconElement = void 0;
+	      if (iconClassName) {
+	        iconElement = _react2.default.createElement(_FontIcon2.default, {
+	          className: iconClassName,
+	          style: (0, _simpleAssign2.default)({}, styles.icon, mini && styles.iconWhenMini, iconStyle)
+	        });
+	      }
+	
+	      var children = void 0;
+	
+	      if (childrenProp) {
+	        children = (0, _childUtils.extendChildren)(childrenProp, function (child) {
+	          return {
+	            style: (0, _simpleAssign2.default)({}, styles.icon, mini && styles.iconWhenMini, iconStyle, child.props.style)
+	          };
+	        });
+	      }
+	
+	      var buttonEventHandlers = disabled ? null : {
 	        onMouseDown: this.handleMouseDown,
 	        onMouseUp: this.handleMouseUp,
 	        onMouseLeave: this.handleMouseLeave,
@@ -65374,138 +65455,91 @@
 	        onKeyboardFocus: this.handleKeyboardFocus
 	      };
 	
-	      var labelElement = label && _react2.default.createElement(
-	        'span',
-	        { style: prepareStyles((0, _simpleAssign2.default)(styles.label, labelStyle)) },
-	        label
-	      );
-	
-	      var iconCloned = icon && (0, _react.cloneElement)(icon, {
-	        color: icon.props.color || styles.label.color,
-	        style: (0, _simpleAssign2.default)(styles.icon, icon.props.style)
-	      });
-	
-	      // Place label before or after children.
-	      var childrenFragment = labelPosition === 'before' ? {
-	        labelElement: labelElement,
-	        iconCloned: iconCloned,
-	        children: children
-	      } : {
-	        children: children,
-	        iconCloned: iconCloned,
-	        labelElement: labelElement
-	      };
-	
-	      var enhancedButtonChildren = (0, _childUtils.createChildFragment)(childrenFragment);
-	
 	      return _react2.default.createElement(
 	        _Paper2.default,
 	        {
 	          className: className,
-	          style: (0, _simpleAssign2.default)(styles.root, style),
-	          zDepth: this.state.zDepth
+	          style: (0, _simpleAssign2.default)(styles.root, this.props.style),
+	          zDepth: this.state.zDepth,
+	          circle: true
 	        },
 	        _react2.default.createElement(
 	          _EnhancedButton2.default,
 	          (0, _extends3.default)({}, other, buttonEventHandlers, {
 	            ref: 'container',
 	            disabled: disabled,
-	            style: (0, _simpleAssign2.default)(styles.button, buttonStyle),
-	            focusRippleColor: mergedRippleStyles.color,
-	            touchRippleColor: mergedRippleStyles.color,
-	            focusRippleOpacity: mergedRippleStyles.opacity,
-	            touchRippleOpacity: mergedRippleStyles.opacity
+	            style: (0, _simpleAssign2.default)(styles.container, this.props.mini && styles.containerWhenMini, iconStyle),
+	            focusRippleColor: styles.icon.color,
+	            touchRippleColor: styles.icon.color
 	          }),
 	          _react2.default.createElement(
 	            'div',
 	            {
 	              ref: 'overlay',
-	              style: prepareStyles((0, _simpleAssign2.default)(styles.overlay, overlayStyle))
+	              style: prepareStyles((0, _simpleAssign2.default)(styles.overlay, this.state.hovered && !this.props.disabled && styles.overlayWhenHovered))
 	            },
-	            enhancedButtonChildren
+	            iconElement,
+	            children
 	          )
 	        )
 	      );
 	    }
 	  }]);
-	  return RaisedButton;
+	  return FloatingActionButton;
 	}(_react.Component);
 	
-	RaisedButton.muiName = 'RaisedButton';
-	RaisedButton.defaultProps = {
+	FloatingActionButton.defaultProps = {
 	  disabled: false,
-	  labelPosition: 'after',
-	  fullWidth: false,
-	  primary: false,
-	  secondary: false
+	  mini: false,
+	  secondary: false,
+	  zDepth: 2
 	};
-	RaisedButton.contextTypes = {
+	FloatingActionButton.contextTypes = {
 	  muiTheme: _react.PropTypes.object.isRequired
 	};
-	process.env.NODE_ENV !== "production" ? RaisedButton.propTypes = {
+	process.env.NODE_ENV !== "production" ? FloatingActionButton.propTypes = {
 	  /**
-	   * Override the default background color for the button,
-	   * but not the default disabled background color
-	   * (use `disabledBackgroundColor` for this).
+	   * This value will override the default background color for the button.
+	   * However it will not override the default disabled background color.
+	   * This has to be set separately using the disabledColor attribute.
 	   */
 	  backgroundColor: _react.PropTypes.string,
 	  /**
-	   * Override the inline-styles of the button element.
-	   */
-	  buttonStyle: _react.PropTypes.object,
-	  /**
-	   * The content of the button.
-	   * If a label is provided via the `label` prop, the text within the label
-	   * will be displayed in addition to the content provided here.
+	   * This is what displayed inside the floating action button; for example, a SVG Icon.
 	   */
 	  children: _react.PropTypes.node,
 	  /**
-	   * The CSS class name of the root element.
+	   * The css class name of the root element.
 	   */
 	  className: _react.PropTypes.string,
 	  /**
-	   * If true, the button will be disabled.
+	   * Disables the button if set to true.
 	   */
 	  disabled: _react.PropTypes.bool,
 	  /**
-	   * Override the default background color for the button
-	   * when it is disabled.
+	   * This value will override the default background color for the button when it is disabled.
 	   */
-	  disabledBackgroundColor: _react.PropTypes.string,
-	  /**
-	   * The color of the button's label when the button is disabled.
-	   */
-	  disabledLabelColor: _react.PropTypes.string,
-	  /**
-	   * If true, the button will take up the full width of its container.
-	   */
-	  fullWidth: _react.PropTypes.bool,
+	  disabledColor: _react.PropTypes.string,
 	  /**
 	   * The URL to link to when the button is clicked.
 	   */
 	  href: _react.PropTypes.string,
 	  /**
-	   * An icon to be displayed within the button.
+	   * The icon within the FloatingActionButton is a FontIcon component.
+	   * This property is the classname of the icon to be displayed inside the button.
+	   * An alternative to adding an iconClassName would be to manually insert a
+	   * FontIcon component or custom SvgIcon component or as a child of FloatingActionButton.
 	   */
-	  icon: _react.PropTypes.node,
+	  iconClassName: _react.PropTypes.string,
 	  /**
-	   * The label to be displayed within the button.
-	   * If content is provided via the `children` prop, that content will be
-	   * displayed in addition to the label provided here.
+	   * This is the equivalent to iconClassName except that it is used for
+	   * overriding the inline-styles of the FontIcon component.
 	   */
-	  label: validateLabel,
+	  iconStyle: _react.PropTypes.object,
 	  /**
-	   * The color of the button's label.
+	   * If true, the button will be a small floating action button.
 	   */
-	  labelColor: _react.PropTypes.string,
-	  /**
-	   * The position of the button's label relative to the button's `children`.
-	   */
-	  labelPosition: _react.PropTypes.oneOf(['before', 'after']),
-	  /**
-	   * Override the inline-styles of the button's label element.
-	   */
-	  labelStyle: _react.PropTypes.object,
+	  mini: _react.PropTypes.bool,
 	  /** @ignore */
 	  onMouseDown: _react.PropTypes.func,
 	  /** @ignore */
@@ -65519,29 +65553,19 @@
 	  /** @ignore */
 	  onTouchStart: _react.PropTypes.func,
 	  /**
-	   * Override the inline style of the button overlay.
-	   */
-	  overlayStyle: _react.PropTypes.object,
-	  /**
-	   * If true, the button will use the theme's primary color.
-	   */
-	  primary: _react.PropTypes.bool,
-	  /**
-	   * Override the inline style of the ripple element.
-	   */
-	  rippleStyle: _react.PropTypes.object,
-	  /**
-	   * If true, the button will use the theme's secondary color.
-	   * If both `secondary` and `primary` are true, the button will use
-	   * the theme's primary color.
+	   * If true, the button will use the secondary button colors.
 	   */
 	  secondary: _react.PropTypes.bool,
 	  /**
 	   * Override the inline-styles of the root element.
 	   */
-	  style: _react.PropTypes.object
+	  style: _react.PropTypes.object,
+	  /**
+	   * The zDepth of the underlying `Paper` component.
+	   */
+	  zDepth: _propTypes2.default.zDepth
 	} : void 0;
-	exports.default = RaisedButton;
+	exports.default = FloatingActionButton;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
@@ -65712,22 +65736,34 @@
 	            _react2.default.createElement(
 	              _Table.TableHeaderColumn,
 	              { style: { width: '15%' } },
-	              'NO'
+	              _react2.default.createElement(
+	                'p',
+	                { style: { fontSize: '1.5rem' } },
+	                'NO'
+	              )
 	            ),
 	            _react2.default.createElement(
 	              _Table.TableHeaderColumn,
 	              { style: { width: '45%' } },
-	              'SONG'
+	              _react2.default.createElement(
+	                'p',
+	                { style: { fontSize: '1.5rem' } },
+	                'SONG'
+	              )
 	            ),
 	            _react2.default.createElement(
 	              _Table.TableHeaderColumn,
 	              { style: { width: '20%' } },
-	              'GENRE'
+	              _react2.default.createElement(
+	                'p',
+	                { style: { fontSize: '1.5rem' } },
+	                'GENRE'
+	              )
 	            ),
 	            _react2.default.createElement(
 	              _Table.TableHeaderColumn,
 	              { style: { width: '15%' } },
-	              _react2.default.createElement(_accessTime2.default, { style: { height: '1rem' } })
+	              _react2.default.createElement(_accessTime2.default, { style: { height: '1.5rem' } })
 	            )
 	          )
 	        ),
@@ -65743,22 +65779,38 @@
 	              _react2.default.createElement(
 	                _Table.TableRowColumn,
 	                { style: { width: '15%' } },
-	                audio.current_track == idx ? _react2.default.createElement(_playArrow2.default, { fill: '#000', style: { height: '1rem' } }) : idx + 1
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: { fontSize: '1.5rem' } },
+	                  audio.current_track == idx ? _react2.default.createElement(_playArrow2.default, { fill: '#000', style: { height: '1rem' } }) : idx + 1
+	                )
 	              ),
 	              _react2.default.createElement(
 	                _Table.TableRowColumn,
 	                { style: { width: '45%' } },
-	                track.title
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: { fontSize: '1.5rem' } },
+	                  track.title
+	                )
 	              ),
 	              _react2.default.createElement(
 	                _Table.TableRowColumn,
 	                { style: { width: '20%' } },
-	                track.genre ? track.genre : 'unknown'
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: { fontSize: '1.5rem' } },
+	                  track.genre ? track.genre : 'unknown'
+	                )
 	              ),
 	              _react2.default.createElement(
 	                _Table.TableRowColumn,
 	                { style: { width: '15%' } },
-	                (0, _util.displayDuration)(track.duration)
+	                _react2.default.createElement(
+	                  'p',
+	                  { style: { fontSize: '1.5rem' } },
+	                  (0, _util.displayDuration)(track.duration)
+	                )
 	              )
 	            );
 	          })
@@ -71996,6 +72048,8 @@
 	  value: true
 	});
 	
+	var _input;
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
@@ -72012,7 +72066,7 @@
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
-	var _RaisedButton = __webpack_require__(534);
+	var _RaisedButton = __webpack_require__(490);
 	
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 	
@@ -72070,13 +72124,13 @@
 	
 	      return _react2.default.createElement(
 	        'section',
-	        { className: 'col-xs-offset-2 col-xs-8', style: { paddingTop: '10vh' } },
+	        { className: 'col-xs-offset-1 col-xs-10', style: { paddingTop: '10vh' } },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
 	            'h1',
-	            { style: { fontSize: '2rem' } },
+	            { style: { fontSize: '5rem' } },
 	            'CREATE PLAYROOM'
 	          )
 	        ),
@@ -72085,10 +72139,20 @@
 	          { className: 'row center-xs' },
 	          _react2.default.createElement(
 	            'p',
-	            { style: { fontWeight: 300 } },
-	            'Create your own playroom invite your friends!'
+	            { style: { fontWeight: 300, fontSize: '3rem', marginTop: 0 } },
+	            'Create your own playroom'
 	          )
 	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row center-xs' },
+	          _react2.default.createElement(
+	            'p',
+	            { style: { fontWeight: 300, fontSize: '3rem', marginTop: 0 } },
+	            'and invite your friends!'
+	          )
+	        ),
+	        _react2.default.createElement('div', { style: { height: '5vh' } }),
 	        _react2.default.createElement(
 	          'form',
 	          { onSubmit: function onSubmit(e) {
@@ -72096,26 +72160,55 @@
 	            } },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row center-xs' },
-	            _react2.default.createElement(_TextField2.default, {
-	              hintText: 'Be creative!',
-	              floatingLabelText: 'Room Title',
-	              onChange: function onChange(e) {
-	                return _this2.changeInput(e, 'roomname');
-	              }
-	            })
+	            { className: 'row', style: { fontSize: '3rem' } },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-offset-1' },
+	              'Room Title'
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row center-xs' },
-	            _react2.default.createElement(_TextField2.default, {
-	              hintText: 'Enter 4-digit passcode',
-	              floatingLabelText: 'Passcode',
-	              type: 'password',
-	              onChange: function onChange(e) {
-	                return _this2.changeInput(e, 'accessKey');
-	              }
-	            })
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-offset-1 col-xs-10' },
+	              _react2.default.createElement('input', {
+	                onChange: function onChange(e) {
+	                  return _this2.changeInput(e, 'roomname');
+	                },
+	                type: 'text',
+	                autoFocus: true,
+	                style: styles.input,
+	                placeholder: 'Room Title: Be creative!'
+	              })
+	            )
+	          ),
+	          _react2.default.createElement('div', { style: { height: '5vh' } }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row', style: { fontSize: '3rem' } },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-offset-1' },
+	              'Passcode'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-xs-offset-1 col-xs-10' },
+	              _react2.default.createElement('input', {
+	                onChange: function onChange(e) {
+	                  return _this2.changeInput(e, 'accessKey');
+	                },
+	                type: 'password',
+	                style: styles.passcode,
+	                placeholder: 'Passcode: 4-digit number'
+	              })
+	            )
 	          ),
 	          this.props.errors.roomnameError ? _react2.default.createElement(
 	            'div',
@@ -72128,13 +72221,17 @@
 	          ) : '',
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'row center-xs', style: { marginTop: '5vh' } },
-	            _react2.default.createElement(_RaisedButton2.default, { label: 'CREATE', primary: true, style: { margin: 12 }, type: 'submit' })
+	            { className: 'row center-xs', style: { marginTop: '10vh' } },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-lg-6 col-sm-8' },
+	              _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'CREATE', fullWidth: true, backgroundColor: '#00bbdc', labelColor: '#FFF', labelStyle: { fontSize: '3rem' }, buttonStyle: { height: '5rem', borderRadius: '2.5rem' }, style: { borderRadius: '2.5rem', backgroundColor: '#00bbdc' } })
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'row center-xs', style: { marginTop: '35vh' } },
+	          { className: 'row center-xs', style: { marginTop: '10vh' } },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col-xs-12' },
@@ -72148,6 +72245,33 @@
 	  return Create;
 	}(_react.Component);
 	
+	var styles = {
+	  input: (_input = {
+	    color: '#000',
+	    fontSize: '3rem',
+	    fontWeight: '500',
+	    lineHeight: '120%',
+	    outline: 0,
+	    marginTop: '2%',
+	    display: 'block',
+	    background: 0,
+	    border: 0
+	  }, _defineProperty(_input, 'border', '0.3rem solid rgba(0, 0, 0, 0.2)'), _defineProperty(_input, 'textAlign', 'center'), _defineProperty(_input, 'width', '100%'), _input),
+	  passcode: {
+	    color: '#000',
+	    fontSize: '3rem',
+	    fontWeight: '500',
+	    lineHeight: '120%',
+	    outline: 0,
+	    marginTop: '2%',
+	    display: 'block',
+	    background: 0,
+	    border: '0.3rem solid rgba(0, 0, 0, 0.2)',
+	    textAlign: 'center',
+	    width: '100%'
+	  }
+	};
+	
 	var mapStateToProps = function mapStateToProps(_ref) {
 	  var auth = _ref.auth,
 	      playrooms = _ref.playrooms,
@@ -72155,6 +72279,24 @@
 	  return { auth: auth, playrooms: playrooms, errors: errors };
 	};
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { createPlayroom: _playroom.createPlayroom, duplicatedRoomname: _error.duplicatedRoomname, clearErrors: _error.clearErrors })(Create);
+	
+	/*
+	<TextField
+	              hintText="Be creative!"
+	              floatingLabelText="Room Title"
+	              onChange={(e) => this.changeInput(e, 'roomname')}
+	            />
+
+	<TextField
+	              hintText="Enter 4-digit passcode"
+	              floatingLabelText="Passcode"
+	              type="password"
+	              onChange={(e) => this.changeInput(e, 'accessKey')}
+	            />
+
+	            <div className="row">Room Title</div>
+	            <div className="row">Passcode</div>
+	*/
 
 /***/ },
 /* 580 */
@@ -72192,7 +72334,7 @@
 	
 	var _TrackTable2 = _interopRequireDefault(_TrackTable);
 	
-	var _FloatingActionButton = __webpack_require__(490);
+	var _FloatingActionButton = __webpack_require__(534);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	
@@ -72290,7 +72432,7 @@
 	  fab2: {
 	    marginRight: 20,
 	    position: 'fixed',
-	    bottom: '15vh',
+	    bottom: '10vh',
 	    right: '5vh'
 	  }
 	};
@@ -72371,7 +72513,7 @@
 	
 	var _accessTime2 = _interopRequireDefault(_accessTime);
 	
-	var _FloatingActionButton = __webpack_require__(490);
+	var _FloatingActionButton = __webpack_require__(534);
 	
 	var _FloatingActionButton2 = _interopRequireDefault(_FloatingActionButton);
 	

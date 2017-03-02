@@ -31,11 +31,6 @@ class App extends Component {
     this.state = { drawer: false }
   }
 
-  // componentWillMount() {
-  //   this.props.authenticate();
-  //   this.props.updateHistory(this.props.auth.user.id);
-  // }
-
   openAuth = () => {
     this.props.authenticate();
   }
@@ -66,7 +61,7 @@ class App extends Component {
             <IconButton onTouchTap={this.handleToggle}><NavigationMenu /></IconButton>
           </ToolbarGroup>
 
-          <ToolbarGroup style={{textAlign: 'center'}}><ToolbarTitle style={{fontSize: '0.8rem'}} text={audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? `${audio.tracks[audio.current_track].title} [${audio.current_track + 1}/${audio.tracks.length}]` : `Welcome, ${auth.user.username}!`} /></ToolbarGroup>
+          <ToolbarGroup style={{textAlign: 'center'}}><ToolbarTitle style={{fontSize: '1rem'}} text={audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? `${audio.tracks[audio.current_track].title} [${audio.current_track + 1}/${audio.tracks.length}]` : `Welcome${auth.user && auth.user.username ? ', '+auth.user.username+'!' : '!'}`} /></ToolbarGroup>
 
             {
               audio.tracks ?
@@ -77,7 +72,7 @@ class App extends Component {
                     :<IconButton onTouchTap={() => play(audio.current_track, audio.tracks)}><Play /></IconButton>
                   }
                   <IconButton onTouchTap={() => next(audio.current_track, audio.tracks)}><Next /></IconButton>
-                  <ToolbarTitle text={'-'+String(displayRemainder(audio.remainder))} style={{fontSize: '0.8rem'}} />
+                  <ToolbarTitle text={'-'+String(displayRemainder(audio.remainder))} style={{fontSize: '1rem'}} />
                 </ToolbarGroup>
                 : <ToolbarGroup style={{width: '20%'}}></ToolbarGroup>
             }

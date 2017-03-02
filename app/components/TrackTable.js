@@ -25,10 +25,10 @@ class Track extends Component {
       <Table>
         <TableHeader displaySelectAll={false} enableSelectAll={false} adjustForCheckbox={false}  >
           <TableRow>
-            <TableHeaderColumn style={{width: '15%'}}>NO</TableHeaderColumn>
-            <TableHeaderColumn style={{width: '45%'}}>SONG</TableHeaderColumn>
-            <TableHeaderColumn style={{width: '20%'}}>GENRE</TableHeaderColumn>
-            <TableHeaderColumn style={{width: '15%'}}><Duration style={{height: '1rem'}}/></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '15%'}}><p style={{fontSize: '1.5rem'}}>NO</p></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '45%'}}><p style={{fontSize: '1.5rem'}}>SONG</p></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '20%'}}><p style={{fontSize: '1.5rem'}}>GENRE</p></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '15%'}}><Duration style={{height: '1.5rem'}}/></TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
@@ -36,11 +36,11 @@ class Track extends Component {
           tracks.map((track, idx) => (
             <TableRow key={track.id} onTouchTap={() => this.playTrack(idx)}>
               <TableRowColumn style={{width: '15%'}}>
-                { audio.current_track == idx ? <Play fill="#000" style={{height: '1rem'}}/> : idx+1 }
+                <p style={{fontSize: '1.5rem'}}>{ audio.current_track == idx ? <Play fill="#000" style={{height: '1rem'}}/> : idx+1 }</p>
               </TableRowColumn>
-              <TableRowColumn style={{width: '45%'}}>{track.title}</TableRowColumn>
-              <TableRowColumn style={{width: '20%'}}>{track.genre ? track.genre : 'unknown'}</TableRowColumn>
-              <TableRowColumn style={{width: '15%'}}>{displayDuration(track.duration)}</TableRowColumn>
+              <TableRowColumn style={{width: '45%'}}><p style={{fontSize: '1.5rem'}}>{track.title}</p></TableRowColumn>
+              <TableRowColumn style={{width: '20%'}}><p style={{fontSize: '1.5rem'}}>{track.genre ? track.genre : 'unknown'}</p></TableRowColumn>
+              <TableRowColumn style={{width: '15%'}}><p style={{fontSize: '1.5rem'}}>{displayDuration(track.duration)}</p></TableRowColumn>
             </TableRow>
           ))
         }

@@ -53,22 +53,24 @@ class Main extends React.Component {
       <ListItem key={playroom.id}
         primaryText={playroom.roomname}
         secondaryText={playroom.creator.username}
-        rightIcon={this.state.hoverListItem == playroom.id ? <PlayCircleFilled color="rgb(255, 65, 0)" /> :<PlayCircleOutline />}
+        rightIcon={this.state.hoverListItem == playroom.id ? <PlayCircleFilled color="rgb(255, 65, 0)" style={{height: '3rem', width: '3rem'}}/> :<PlayCircleOutline style={{height: '3rem', width: '3rem'}}/>}
         onTouchTap={() => this.enterPlayroomModal(playroom)}
         onMouseEnter={() => this.mouseEnterListItem(playroom.id)}
         onMouseLeave={this.mouseLeaveListItem}
         hoverColor="rgba(0, 0, 0, 0.02)"
+        style={{fontSize: '2rem', lineHeight: '120%'}}
       />
     ))
   }
 
   render() {
     return (
-      <section className="col-xs-offset-3 col-xs-6" style={{paddingTop: '10vh'}}>
-        <div className="row center-xs"><h1 style={{fontSize: '2rem'}}>WELCOME TO PLAYROOM</h1></div>
-        <div className="row center-xs"><p style={{fontWeight: 300}}>Share your favorite songs with your friends!</p></div>
+      <section className="col-xs-offset-1 col-xs-10" style={{paddingTop: '20vh'}}>
+        <div className="row center-xs"><h1 style={{fontSize: '5rem'}}>PLAYROOM SEARCH</h1></div>
+
 
         <div className="row center-xs" style={{marginTop: '5vh'}}>
+
           <input
             onChange={this.changeQueryPlayroom}
             id="queryPlayroom" type="text"
@@ -76,44 +78,57 @@ class Main extends React.Component {
             style={styles.input}
             placeholder="search playrooms"
           />
+
         </div>
 
         { this.state.queryRoom.length > 2 ?
           <div>
-            <div className="row center-xs"><p>We've found {this.state.queriedPlayrooms.length} related playrooms</p></div>
-            <List>{this.renderQueryResult()}</List>
+            <div className="row center-xs"><p style={{fontSize: '2rem', color: 'rgb(255, 65, 0)'}}>We've found {this.state.queriedPlayrooms.length} related playrooms</p></div>
+            <div className="row">
+              <div className="col-xs-offset-3 col-xs-6" >
+                <List>{this.renderQueryResult()}</List>
+              </div>
+            </div>
           </div>
           : ''}
 
 
         <Dialog
-            title="4-digit Passcode"
-            titleStyle={{textAlign: 'center'}}
+            title="Enter 4-digit Passcode"
+            titleStyle={{textAlign: 'center', fontSize: '3rem'}}
             modal={false}
             open={this.state.modal}
             onRequestClose={this.handleCloseModal}
           >
-            <div className="row center-xs" style={{marginTop: '2vh'}}>Enter 4-digit Passcode to access {this.state.selectedPlayroom.roomname}!</div>
+            <div style={{height: '5vh'}}></div>
+            <div className="row center-xs" style={{fontSize: '3rem', color: 'rgb(255, 65, 0)'}}>{this.state.selectedPlayroom.roomname}</div>
 
             <form onSubmit={e => this.enterPlayroom(e)}>
-              <div className="row center-xs" style={{marginTop: '5vh'}}>
-                <TextField
-                  hintText="Enter 4-digit passcode"
-                  floatingLabelText="Passcode"
-                  type="password"
+              <div className="row center-xs" style={{marginTop: '2vh'}}>
+                <input
                   onChange={(e) => this.setState({accessKey: e.target.value })}
+                  placeholder="4-digit Number"
+                  type="password"
+                  id="queryPlayroom"
+                  autoFocus
+                  style={styles.passcode}
                 />
+
               </div>
-              <div className="row center-xs" style={{marginTop: '5vh'}}><RaisedButton label="ENTER" primary={true} style={{margin: 12}} type="submit" /></div>
+
+              <div style={{height: '5vh'}}></div>
+              <div className="row center-xs">
+                <div className="col-xs-12">
+                  <RaisedButton type="submit" label="Enter" fullWidth={true} backgroundColor="rgb(255, 65, 0)" labelColor="#FFF" labelStyle={{fontSize: '3rem'}} buttonStyle={{height: '5rem'}} style={{backgroundColor: 'rgb(255, 65, 0'}}/>
+                </div>
+              </div>
             </form>
 
           </Dialog>
 
-
           <div className="row center-xs" style={{marginTop: '30vh'}}><div className="col-xs-12"><Footer /></div></div>
 
         <FloatingActionButton secondary={true} style={styles.fab} onTouchTap={() => browserHistory.push('/create')}><ContentAdd /></FloatingActionButton>
-
 
       </section>
     )
@@ -123,7 +138,7 @@ class Main extends React.Component {
 const styles = {
   input: {
     color: '#000',
-    fontSize: '2rem',
+    fontSize: '3rem',
     fontWeight: '500',
     lineHeight: '120%',
     outline: 0,
@@ -131,8 +146,24 @@ const styles = {
     display: 'block',
     background: 0,
     border: 0,
-    borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
-    textAlign: 'center'
+    border: '0.5rem solid rgba(0, 0, 0, 0.2)',
+    borderRadius: '3rem',
+    textAlign: 'center',
+    width: '80%'
+  },
+  passcode: {
+    color: '#000',
+    fontSize: '3rem',
+    fontWeight: '500',
+    lineHeight: '120%',
+    outline: 0,
+    marginTop: '5%',
+    display: 'block',
+    background: 0,
+    border: '0.5rem solid rgba(0, 0, 0, 0.2)',
+    borderRadius: '3rem',
+    textAlign: 'center',
+    width: '60%'
   },
   fab: {
     marginRight: 20,
@@ -144,3 +175,14 @@ const styles = {
 
 const mapStateToProps = ({ auth, playrooms }) => ({ auth, playrooms });
 export default connect(mapStateToProps, { fetchFavoriteTracks , fetchAllPlayrooms, enterPlayroom }) (Main);
+//<div className="row center-xs"><p style={{fontWeight: 300, fontSize: '3rem'}}>Share your favorite songs with your friends!</p></div>
+/*
+
+                <TextField
+                  onChange={(e) => this.setState({accessKey: e.target.value })}
+                  hintText="Enter 4-digit passcode"
+                  floatingLabelText="Passcode"
+                  type="password"
+                  textareaStyle={{height: '3rem'}}
+                />
+*/

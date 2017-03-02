@@ -26,43 +26,107 @@ class Create extends Component {
 
   render() {
     return(
-      <section className="col-xs-offset-2 col-xs-8" style={{paddingTop: '10vh'}}>
+      <section className="col-xs-offset-1 col-xs-10" style={{paddingTop: '10vh'}}>
 
-        <div className="row center-xs"><h1 style={{fontSize: '2rem'}}>CREATE PLAYROOM</h1></div>
-        <div className="row center-xs"><p style={{fontWeight: 300}}>Create your own playroom invite your friends!</p></div>
+        <div className="row center-xs"><h1 style={{fontSize: '5rem'}}>CREATE PLAYROOM</h1></div>
+        <div className="row center-xs"><p style={{fontWeight: 300, fontSize: '3rem', marginTop: 0}}>Create your own playroom</p></div>
+        <div className="row center-xs"><p style={{fontWeight: 300, fontSize: '3rem', marginTop: 0}}>and invite your friends!</p></div>
 
+        <div style={{height: '5vh'}}></div>
         <form onSubmit={(e) => this.createPlayroom(e)}>
 
-          <div className="row center-xs">
-            <TextField
-              hintText="Be creative!"
-              floatingLabelText="Room Title"
+          <div className="row" style={{fontSize: '3rem'}}><div className="col-xs-offset-1">Room Title</div></div>
+          <div className="row">
+            <div className="col-xs-offset-1 col-xs-10">
+            <input
               onChange={(e) => this.changeInput(e, 'roomname')}
+              type="text"
+              autoFocus
+              style={styles.input}
+              placeholder="Room Title: Be creative!"
             />
+            </div>
           </div>
 
-          <div className="row center-xs">
-            <TextField
-              hintText="Enter 4-digit passcode"
-              floatingLabelText="Passcode"
-              type="password"
+          <div style={{height: '5vh'}}></div>
+          <div className="row" style={{fontSize: '3rem'}}><div className="col-xs-offset-1">Passcode</div></div>
+          <div className="row">
+            <div className="col-xs-offset-1 col-xs-10">
+            <input
               onChange={(e) => this.changeInput(e, 'accessKey')}
+              type="password"
+              style={styles.passcode}
+              placeholder="Passcode: 4-digit number"
             />
+            </div>
           </div>
 
           { this.props.errors.roomnameError ?
             <div className="row center-xs"><p style={{fontWeight: 300, color: '#F44336'}}>{this.props.errors.roomnameError}</p></div>
           : ''}
 
-          <div className="row center-xs" style={{marginTop: '5vh'}}><RaisedButton label="CREATE" primary={true} style={{margin: 12}} type="submit"/></div>
+          <div className="row center-xs" style={{marginTop: '10vh'}}>
+            <div className="col-lg-6 col-sm-8">
+              <RaisedButton type="submit" label="CREATE" fullWidth={true} backgroundColor="#00bbdc" labelColor="#FFF" labelStyle={{fontSize: '3rem'}} buttonStyle={{height: '5rem', borderRadius: '2.5rem'}} style={{borderRadius: '2.5rem', backgroundColor: '#00bbdc'}}/>
+            </div>
+          </div>
 
         </form>
 
-        <div className="row center-xs" style={{marginTop: '35vh'}}><div className="col-xs-12"><Footer /></div></div>
+        <div className="row center-xs" style={{marginTop: '10vh'}}><div className="col-xs-12"><Footer /></div></div>
       </section>
     )
   }
 }
 
+const styles = {
+  input: {
+    color: '#000',
+    fontSize: '3rem',
+    fontWeight: '500',
+    lineHeight: '120%',
+    outline: 0,
+    marginTop: '2%',
+    display: 'block',
+    background: 0,
+    border: 0,
+    border: '0.3rem solid rgba(0, 0, 0, 0.2)',
+    textAlign: 'center',
+    width: '100%'
+  },
+  passcode: {
+    color: '#000',
+    fontSize: '3rem',
+    fontWeight: '500',
+    lineHeight: '120%',
+    outline: 0,
+    marginTop: '2%',
+    display: 'block',
+    background: 0,
+    border: '0.3rem solid rgba(0, 0, 0, 0.2)',
+    textAlign: 'center',
+    width: '100%'
+  }
+}
+
 const mapStateToProps = ({ auth, playrooms, errors }) => ({ auth, playrooms, errors })
 export default connect(mapStateToProps, { createPlayroom, duplicatedRoomname, clearErrors }) (Create);
+
+/*
+<TextField
+              hintText="Be creative!"
+              floatingLabelText="Room Title"
+              onChange={(e) => this.changeInput(e, 'roomname')}
+            />
+
+<TextField
+              hintText="Enter 4-digit passcode"
+              floatingLabelText="Passcode"
+              type="password"
+              onChange={(e) => this.changeInput(e, 'accessKey')}
+            />
+
+            <div className="row">Room Title</div>
+            <div className="row">Passcode</div>
+*/
+
