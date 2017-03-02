@@ -30058,7 +30058,6 @@
 	
 	    _this.openAuth = function () {
 	      _this.props.authenticate();
-	      _this.props.updateHistory(_this.props.auth.user.id);
 	    };
 	
 	    _this.handleToggle = function () {
@@ -61139,7 +61138,7 @@
 	    };
 	
 	    _this.handleCloseModal = function () {
-	      return _this.setStatus({ modal: false });
+	      return _this.setState({ modal: false });
 	    };
 	
 	    _this.mouseEnterListItem = function (roomId) {

@@ -38,7 +38,6 @@ class App extends Component {
 
   openAuth = () => {
     this.props.authenticate();
-    this.props.updateHistory(this.props.auth.user.id);
   }
 
   handleToggle = () => this.setState({drawer: !this.state.drawer});
