@@ -29,3 +29,4 @@ const FIRE_BASE = {
 const REDIRECT_URI = 'https://sc-playroom.herokuapp.com/callback';
 
 module.exports = { CLIENT_ID, FIRE_BASE, REDIRECT_URI }
+
