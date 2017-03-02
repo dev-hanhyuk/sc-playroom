@@ -10,3 +10,5 @@ npm-debug.log
 
 .DS_Store
 
+app/env.js
+/app/env.js
