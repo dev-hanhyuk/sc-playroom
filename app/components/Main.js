@@ -43,7 +43,7 @@ class Main extends React.Component {
     this.setState({ modal: true })
   }
 
-  handleCloseModal = () => this.setStatus({ modal: false })
+  handleCloseModal = () => this.setState({ modal: false })
 
   mouseEnterListItem = (roomId) => this.setState({ hoverListItem: roomId })
   mouseLeaveListItem = () => this.setState({ hoverListItem: null })
