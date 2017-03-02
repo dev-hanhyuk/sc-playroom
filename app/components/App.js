@@ -56,6 +56,9 @@ class App extends Component {
     const { audio, auth, pause, play, next, previous } = this.props;
     return (
       <section>
+      {
+        auth.user && auth.user.username ?
+        <div>
         <Toolbar style={{position: 'fixed', width: '100%', zIndex: 10, backgroundColor: '#FFF'}} className="box-shadow">
           <ToolbarGroup firstChild={true} style={{width: '30%'}}>
             <IconButton onTouchTap={this.handleToggle}><NavigationMenu /></IconButton>
@@ -93,6 +96,9 @@ class App extends Component {
           {this.renderRecentPlayrooms()}
           <Divider />
         </Drawer>
+        </div>
+        : ''
+      }
 
 
         <div className="row"><div className="col-xs-12">{ this.props.children }</div></div>

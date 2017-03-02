@@ -30110,109 +30110,113 @@
 	      return _react2.default.createElement(
 	        'section',
 	        null,
-	        _react2.default.createElement(
-	          _Toolbar.Toolbar,
-	          { style: { position: 'fixed', width: '100%', zIndex: 10, backgroundColor: '#FFF' }, className: 'box-shadow' },
+	        auth.user && auth.user.username ? _react2.default.createElement(
+	          'div',
+	          null,
 	          _react2.default.createElement(
-	            _Toolbar.ToolbarGroup,
-	            { firstChild: true, style: { width: '30%' } },
+	            _Toolbar.Toolbar,
+	            { style: { position: 'fixed', width: '100%', zIndex: 10, backgroundColor: '#FFF' }, className: 'box-shadow' },
 	            _react2.default.createElement(
-	              _IconButton2.default,
-	              { onTouchTap: this.handleToggle },
-	              _react2.default.createElement(_menu2.default, null)
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _Toolbar.ToolbarGroup,
-	            { style: { textAlign: 'center' } },
-	            _react2.default.createElement(_Toolbar.ToolbarTitle, { style: { fontSize: '1rem' }, text: audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? audio.tracks[audio.current_track].title + ' [' + (audio.current_track + 1) + '/' + audio.tracks.length + ']' : 'Welcome' + (auth.user && auth.user.username ? ', ' + auth.user.username + '!' : '!') })
-	          ),
-	          audio.tracks ? _react2.default.createElement(
-	            _Toolbar.ToolbarGroup,
-	            { style: { width: '30%' } },
-	            _react2.default.createElement(
-	              _IconButton2.default,
-	              { onTouchTap: function onTouchTap() {
-	                  return previous(audio.current_track, audio.tracks);
-	                } },
-	              _react2.default.createElement(_fastRewind2.default, null)
-	            ),
-	            audio.playing ? _react2.default.createElement(
-	              _IconButton2.default,
-	              { onTouchTap: function onTouchTap() {
-	                  return pause();
-	                } },
-	              _react2.default.createElement(_pause2.default, null)
-	            ) : _react2.default.createElement(
-	              _IconButton2.default,
-	              { onTouchTap: function onTouchTap() {
-	                  return play(audio.current_track, audio.tracks);
-	                } },
-	              _react2.default.createElement(_playArrow2.default, null)
+	              _Toolbar.ToolbarGroup,
+	              { firstChild: true, style: { width: '30%' } },
+	              _react2.default.createElement(
+	                _IconButton2.default,
+	                { onTouchTap: this.handleToggle },
+	                _react2.default.createElement(_menu2.default, null)
+	              )
 	            ),
 	            _react2.default.createElement(
-	              _IconButton2.default,
-	              { onTouchTap: function onTouchTap() {
-	                  return next(audio.current_track, audio.tracks);
-	                } },
-	              _react2.default.createElement(_fastForward2.default, null)
+	              _Toolbar.ToolbarGroup,
+	              { style: { textAlign: 'center' } },
+	              _react2.default.createElement(_Toolbar.ToolbarTitle, { style: { fontSize: '1rem' }, text: audio.tracks && audio.tracks.length > 0 && audio.current_track !== null ? audio.tracks[audio.current_track].title + ' [' + (audio.current_track + 1) + '/' + audio.tracks.length + ']' : 'Welcome' + (auth.user && auth.user.username ? ', ' + auth.user.username + '!' : '!') })
 	            ),
-	            _react2.default.createElement(_Toolbar.ToolbarTitle, { text: '-' + String((0, _util.displayRemainder)(audio.remainder)), style: { fontSize: '1rem' } })
-	          ) : _react2.default.createElement(_Toolbar.ToolbarGroup, { style: { width: '20%' } })
-	        ),
-	        _react2.default.createElement(
-	          _Drawer2.default,
-	          { docked: false, width: 250, open: this.state.drawer, onRequestChange: function onRequestChange(drawer) {
-	              return _this2.setState({ drawer: drawer });
-	            } },
-	          _react2.default.createElement(_Divider2.default, null),
-	          _react2.default.createElement(
-	            _Subheader2.default,
-	            null,
-	            'MAIN MENU'
+	            audio.tracks ? _react2.default.createElement(
+	              _Toolbar.ToolbarGroup,
+	              { style: { width: '30%' } },
+	              _react2.default.createElement(
+	                _IconButton2.default,
+	                { onTouchTap: function onTouchTap() {
+	                    return previous(audio.current_track, audio.tracks);
+	                  } },
+	                _react2.default.createElement(_fastRewind2.default, null)
+	              ),
+	              audio.playing ? _react2.default.createElement(
+	                _IconButton2.default,
+	                { onTouchTap: function onTouchTap() {
+	                    return pause();
+	                  } },
+	                _react2.default.createElement(_pause2.default, null)
+	              ) : _react2.default.createElement(
+	                _IconButton2.default,
+	                { onTouchTap: function onTouchTap() {
+	                    return play(audio.current_track, audio.tracks);
+	                  } },
+	                _react2.default.createElement(_playArrow2.default, null)
+	              ),
+	              _react2.default.createElement(
+	                _IconButton2.default,
+	                { onTouchTap: function onTouchTap() {
+	                    return next(audio.current_track, audio.tracks);
+	                  } },
+	                _react2.default.createElement(_fastForward2.default, null)
+	              ),
+	              _react2.default.createElement(_Toolbar.ToolbarTitle, { text: '-' + String((0, _util.displayRemainder)(audio.remainder)), style: { fontSize: '1rem' } })
+	            ) : _react2.default.createElement(_Toolbar.ToolbarGroup, { style: { width: '20%' } })
 	          ),
-	          _react2.default.createElement(_Divider2.default, null),
 	          _react2.default.createElement(
-	            _MenuItem2.default,
-	            { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
-	                return _this2.handleClose('/main');
+	            _Drawer2.default,
+	            { docked: false, width: 250, open: this.state.drawer, onRequestChange: function onRequestChange(drawer) {
+	                return _this2.setState({ drawer: drawer });
 	              } },
-	            _react2.default.createElement(_search2.default, { style: { verticalAlign: 'middle' } }),
-	            '  SEARCH'
-	          ),
-	          _react2.default.createElement(
-	            _MenuItem2.default,
-	            { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
-	                return _this2.handleClose('/favorite');
-	              } },
-	            _react2.default.createElement(_favorite2.default, { color: '#D32F2F', style: { verticalAlign: 'middle' } }),
-	            '  MY FAVORITES'
-	          ),
-	          _react2.default.createElement(
-	            _MenuItem2.default,
-	            { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
-	                return _this2.handleClose('/create');
-	              } },
-	            _react2.default.createElement(_add2.default, { color: '#00BCD4', style: { verticalAlign: 'middle' } }),
-	            '  CREATE PLAYROOM'
-	          ),
-	          _react2.default.createElement(
-	            _MenuItem2.default,
-	            { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
-	                return _this2.handleClose('/login');
-	              } },
-	            _react2.default.createElement(_powerSettingsNew2.default, { color: 'rgb(255, 65, 0)', style: { verticalAlign: 'middle' } }),
-	            '  LOGIN'
-	          ),
-	          _react2.default.createElement(_Divider2.default, null),
-	          _react2.default.createElement(
-	            _Subheader2.default,
-	            null,
-	            'RECENT PLAYROOMS'
-	          ),
-	          this.renderRecentPlayrooms(),
-	          _react2.default.createElement(_Divider2.default, null)
-	        ),
+	            _react2.default.createElement(_Divider2.default, null),
+	            _react2.default.createElement(
+	              _Subheader2.default,
+	              null,
+	              'MAIN MENU'
+	            ),
+	            _react2.default.createElement(_Divider2.default, null),
+	            _react2.default.createElement(
+	              _MenuItem2.default,
+	              { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
+	                  return _this2.handleClose('/main');
+	                } },
+	              _react2.default.createElement(_search2.default, { style: { verticalAlign: 'middle' } }),
+	              '  SEARCH'
+	            ),
+	            _react2.default.createElement(
+	              _MenuItem2.default,
+	              { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
+	                  return _this2.handleClose('/favorite');
+	                } },
+	              _react2.default.createElement(_favorite2.default, { color: '#D32F2F', style: { verticalAlign: 'middle' } }),
+	              '  MY FAVORITES'
+	            ),
+	            _react2.default.createElement(
+	              _MenuItem2.default,
+	              { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
+	                  return _this2.handleClose('/create');
+	                } },
+	              _react2.default.createElement(_add2.default, { color: '#00BCD4', style: { verticalAlign: 'middle' } }),
+	              '  CREATE PLAYROOM'
+	            ),
+	            _react2.default.createElement(
+	              _MenuItem2.default,
+	              { style: { textDecoration: 'none', color: 'rgba(0, 0, 0, 0.8)' }, onTouchTap: function onTouchTap() {
+	                  return _this2.handleClose('/login');
+	                } },
+	              _react2.default.createElement(_powerSettingsNew2.default, { color: 'rgb(255, 65, 0)', style: { verticalAlign: 'middle' } }),
+	              '  LOGIN'
+	            ),
+	            _react2.default.createElement(_Divider2.default, null),
+	            _react2.default.createElement(
+	              _Subheader2.default,
+	              null,
+	              'RECENT PLAYROOMS'
+	            ),
+	            this.renderRecentPlayrooms(),
+	            _react2.default.createElement(_Divider2.default, null)
+	          )
+	        ) : '',
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -30267,7 +30271,7 @@
 	
 	var authenticate = exports.authenticate = function authenticate() {
 	  return function (dispatch) {
-	    SC.connect().then(function () {
+	    return SC.connect().then(function () {
 	      return SC.get('/me');
 	    }).then(function (user) {
 	      var email = user.id + 'sc-playroom@email.com';
@@ -30282,7 +30286,7 @@
 	        return _firebase2.default.auth().createUserWithEmailAndPassword(email, password).then(function () {
 	          dispatch({ type: _actions.AUTHENTICATE, user: user });
 	          dispatch(updateHistory(user.id));
-	          dispatch((0, _reactRouterRedux.push)('/main'));
+	          return dispatch((0, _reactRouterRedux.push)('/main'));
 	        }).catch(function () {
 	          return console.log('authentication failed');
 	        });
@@ -61353,6 +61357,7 @@
 	                },
 	                placeholder: '4-digit Number',
 	                type: 'password',
+	                maxLength: '4',
 	                id: 'queryPlayroom',
 	                autoFocus: true,
 	                style: styles.passcode
@@ -72208,7 +72213,8 @@
 	                },
 	                type: 'password',
 	                style: styles.passcode,
-	                placeholder: 'Passcode: 4-digit number'
+	                placeholder: 'Passcode: 4-digit number',
+	                maxLength: '4'
 	              })
 	            )
 	          ),

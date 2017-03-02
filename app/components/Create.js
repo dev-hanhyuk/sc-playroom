@@ -57,6 +57,7 @@ class Create extends Component {
               type="password"
               style={styles.passcode}
               placeholder="Passcode: 4-digit number"
+              maxLength="4"
             />
             </div>
           </div>

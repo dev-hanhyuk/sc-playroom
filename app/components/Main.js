@@ -109,6 +109,7 @@ class Main extends React.Component {
                   onChange={(e) => this.setState({accessKey: e.target.value })}
                   placeholder="4-digit Number"
                   type="password"
+                  maxLength="4"
                   id="queryPlayroom"
                   autoFocus
                   style={styles.passcode}

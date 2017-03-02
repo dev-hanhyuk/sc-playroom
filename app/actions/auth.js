@@ -8,7 +8,7 @@ SC.initialize({ client_id: CLIENT_ID, redirect_uri: REDIRECT_URI })
 
 
 export const authenticate = () => dispatch => {
-    SC.connect().then(() => SC.get('/me'))
+    return SC.connect().then(() => SC.get('/me'))
     .then(user => {
       const email = user.id + 'sc-playroom@email.com'
       const password = user.username + user.id;
@@ -25,7 +25,7 @@ export const authenticate = () => dispatch => {
             .then(() => {
               dispatch({ type: AUTHENTICATE, user })
               dispatch(updateHistory(user.id))
-              dispatch(push('/main'))
+              return dispatch(push('/main'))
             })
             .catch(() => console.log('authentication failed'))
         })
