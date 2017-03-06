@@ -9,3 +9,8 @@ node_modules/*
 npm-debug.log
 
 .DS_Store
+
+app/.env.js
+
+public/bundle.js
+public/bundle.js.map
