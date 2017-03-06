@@ -43,7 +43,7 @@ class Create extends Component {
               type="text"
               autoFocus
               style={styles.input}
-              placeholder="Room Title: Be creative!"
+              placeholder="Be creative!"
             />
             </div>
           </div>
@@ -56,7 +56,7 @@ class Create extends Component {
               onChange={(e) => this.changeInput(e, 'accessKey')}
               type="password"
               style={styles.passcode}
-              placeholder="Passcode: 4-digit number"
+              placeholder="4-digit number"
               maxLength="4"
             />
             </div>

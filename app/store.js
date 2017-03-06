@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, routerMiddleware(browserHistory)))
+const store = createStore(rootReducer, applyMiddleware(createLogger(), thunkMiddleware, routerMiddleware(browserHistory)))
 
 export default store;
 

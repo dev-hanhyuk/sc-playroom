@@ -23295,7 +23295,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory)));
+	var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)((0, _reduxLogger2.default)(), _reduxThunk2.default, (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory)));
 	
 	exports.default = store;
 	
@@ -72187,7 +72187,7 @@
 	                type: 'text',
 	                autoFocus: true,
 	                style: styles.input,
-	                placeholder: 'Room Title: Be creative!'
+	                placeholder: 'Be creative!'
 	              })
 	            )
 	          ),
@@ -72213,7 +72213,7 @@
 	                },
 	                type: 'password',
 	                style: styles.passcode,
-	                placeholder: 'Passcode: 4-digit number',
+	                placeholder: '4-digit number',
 	                maxLength: '4'
 	              })
 	            )
